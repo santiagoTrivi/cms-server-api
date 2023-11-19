@@ -19,6 +19,9 @@
     "noFallthroughCasesInSwitch": false,
     "strict": true,
     "paths": {
+      "@common/*":["src/common/*"],
+      "@auth/*":["src/auth/*"],
+      "@user/*": ["src/user/*"],
       "@database/*": ["src/database/*"],
       "@config/*":["src/config/*"],
       "@/*": ["@"]

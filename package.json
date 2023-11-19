@@ -83,6 +83,9 @@
   "_moduleAliases": {
     "@": ".",
     "@config/*": "dist/config",
-    "@database/*": "dist/database"
+    "@database/*": "dist/database",
+    "@user/*": "dist/user",
+    "@auth/*": "dist/auth",
+    "@common/*": "dist/common"
   }
 }
