@@ -11,13 +11,17 @@ export class GetRole {
 
 
     execute = async () => {
-        const found = await this.roleRepository.find();
+        try {
+            const found = await this.roleRepository.find();
 
-        const roles = found.map(({role_id, role_name}) => {
-            return {role_id, role_name}
-        })
+            const roles = found.map(({role_id, role_name}) => {
+                return {role_id, role_name}
+            })
 
-        return roles;
+            return roles;
+        } catch (error) {
+            throw error;
+        }
     }
 
 }
