@@ -12,33 +12,34 @@ export class UserTypeOrmReposioty implements UserRepository {
     private typeOrmRepo: Repository<UserModel>,
   ) {}
 
-  create = async (entity: User): Promise<User> => {
-    const created = await this.typeOrmRepo.save(entity);
-    return UserMapperTypeOrm.toDomain(created);
+  create = async (entity: User) => {
+    return await this.typeOrmRepo.save(entity);
   };
-  findAll(): Promise<User[]> {
-    throw new Error('Method not implemented.');
-  }
-  findById = async (id: any): Promise<User> => {
-    const user = await this.typeOrmRepo.findOne({where: id});
 
-    if(!user){
-      return undefined
+  findById = async (id: any): Promise<User> => {
+    const user = await this.typeOrmRepo.findOne({ where: id });
+
+    if (!user) {
+      return undefined;
     }
     return UserMapperTypeOrm.toDomain(user);
-  }
-  findby = async (element: any): Promise<User | undefined> => {
-    const user = await this.typeOrmRepo.findOne({where: element})
+  };
 
-    if(!user){
-      return undefined
-    }
-    return UserMapperTypeOrm.toDomain(user)
-  }
-  delete(id: string): Promise<void> {
+  find = async (query?: object): Promise<User[]> => {
     throw new Error('Method not implemented.');
-  }
-  update(dataToUpdate: Partial<User>): Promise<User> {
+  };
+
+  findOne = async (query: any): Promise<User | undefined> => {
+    const found = await this.typeOrmRepo.findOne({ where: query });
+
+    if (!found) return undefined;
+    return UserMapperTypeOrm.toDomain(found);
+  };
+
+  delete = (id: string): Promise<void> => {
     throw new Error('Method not implemented.');
-  }
+  };
+  update = async (id: string, dataToUpdate: Partial<User>): Promise<User> => {
+    throw new Error('Method not implemented.');
+  };
 }

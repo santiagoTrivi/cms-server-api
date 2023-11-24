@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModuleOptions, TypeOrmOptionsFactory } from '@nestjs/typeorm';
+import { RoleModel } from '@role/infrastructure/model';
 import { UserModel } from '@user/infrastructure/models';
-
-
 
 @Injectable()
 export class PostgresCofigService implements TypeOrmOptionsFactory {
@@ -18,8 +17,11 @@ export class PostgresCofigService implements TypeOrmOptionsFactory {
       password: this.configService.get<string>('DATABASE_PASSWORD'),
       database: this.configService.get<string>('DATABASE_NAME'),
       url: this.configService.get<string>('DATABASE_URL'),
-      entities:[UserModel],
-      synchronize: true
+      entities: [UserModel, RoleModel],
+      migrations:['dist/database/migrations/*.migration.{ts, js}'],
+      synchronize: true,
     };
   }
 }
+
+

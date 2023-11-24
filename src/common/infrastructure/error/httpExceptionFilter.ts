@@ -19,26 +19,25 @@ export class HttpExceptionsFilter implements ExceptionFilter {
 
     const ctx = host.switchToHttp();
 
-/*
+    let statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
 
-    const httpStatus =
-    exception instanceof BaseError
-    ? exception.statusCode
-    : HttpStatus.INTERNAL_SERVER_ERROR;
-*/
-
-    if(exception instanceof BaseError){
-      const {statusCode} = exception;
+    if (exception instanceof HttpException) {
       const responseBody = {
         statusCode,
         message: exception.message,
-        error: exception.error
+        error: exception.getResponse(),
+      };
+    }
+
+    if (exception instanceof BaseError) {
+      statusCode = exception.statusCode;
+      const responseBody = {
+        statusCode,
+        message: exception.message,
+        error: exception.error,
       };
 
       httpAdapter.reply(ctx.getResponse(), responseBody, statusCode);
     }
-
-
-
   }
 }

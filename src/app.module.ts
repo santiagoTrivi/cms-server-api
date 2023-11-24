@@ -8,6 +8,9 @@ import { UserModule } from './user/infrastructure/user.module';
 import { AuthModule } from './auth/infrastructure/auth.module';
 import { httpExceptionFilterConfig } from '@common/infrastructure';
 import { UserController } from './user/infrastructure/user.controller';
+import { ProfileModule } from '@profile/infrastructure/profile.module';
+import { RoleModule } from '@role/infrastructure/role.module';
+import { RoleController } from './role/infrastructure/role.controller';
 
 @Module({
   imports: [
@@ -17,11 +20,11 @@ import { UserController } from './user/infrastructure/user.controller';
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     UserModule,
-    AuthModule
+    AuthModule,
+    ProfileModule,
+    RoleModule,
   ],
-  controllers: [AppController, UserController],
-  providers: [
-    httpExceptionFilterConfig,
-    AppService],
+  controllers: [AppController, UserController, RoleController],
+  providers: [AppService],
 })
 export class AppModule {}

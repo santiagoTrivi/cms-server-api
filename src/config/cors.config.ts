@@ -14,4 +14,4 @@ export const corsSetting: CorsOptions = {
     'Authorization',
   ],
   credentials: true,
-}; 
+};

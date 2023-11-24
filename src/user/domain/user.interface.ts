@@ -1,17 +1,12 @@
-import { BaseEntity } from '@common/domain';
+import { BaseEntityProps } from '@common/domain';
 
-export interface UserProps extends BaseEntity {
+export interface UserProps extends BaseEntityProps {
   readonly user_id: string;
   readonly email: string;
   readonly firstName: string;
   readonly lastName: string;
-  readonly password: string;
+  readonly password?: string;
   readonly lastLogin: Date;
   readonly isActive: boolean;
-  readonly profileImg: string;
+  readonly isVerified: boolean;
 }
-
-export type NewUserProps = Pick<
-  UserProps,
-  'email' | 'firstName' | 'lastName' | 'password' | 'profileImg'
->;

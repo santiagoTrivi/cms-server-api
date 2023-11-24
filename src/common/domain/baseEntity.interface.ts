@@ -1,4 +1,4 @@
-export interface BaseEntity {
+export interface BaseEntityProps {
   createdAt: Date;
   updatedAt: Date;
 }

@@ -1,2 +1,2 @@
 export * from './passwordCipher';
-export * from './passwordCipher.config'
+export * from './passwordCipher.provider';

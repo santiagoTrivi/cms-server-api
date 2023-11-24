@@ -5,30 +5,28 @@ import { UserRegistered } from '@user/domain/error/userRegistered';
 
 @Injectable()
 export class CreateUser {
-  
   constructor(
     @Inject('UserRepository')
     readonly userRepository: UserRepository,
     @Inject('DataCipher')
-    readonly passwordCipher: DataCipher
+    readonly passwordCipher: DataCipher,
   ) {}
 
   execute = async (userDto: UserDto) => {
-    const { email, firstName, lastName, password, profileImg } = userDto;
+    try {
+      const { email } = userDto;
 
-    const isRegistered = true //await this.userRepository.findby({ email });
+      const isRegistered = await this.userRepository.findOne({ email });
 
-    if (isRegistered) {
-      throw new UserRegistered(email);
+      if (isRegistered) {
+        throw new UserRegistered(email);
+      }
+
+      const user = await User.create(userDto, this.passwordCipher);
+
+      return await this.userRepository.create(user);
+    } catch (error) {
+      throw error;
     }
-
-    const user = await User.createInstance(
-      { email, firstName, lastName, password, profileImg },
-      this.passwordCipher,
-    );
-    
-    return await this.userRepository.create(user);
-    
   };
-  
 }

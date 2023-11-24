@@ -1,8 +1,8 @@
 export interface BaseRespository<T> {
   create(entity: T): Promise<T>;
-  findAll(): Promise<T[]>;
-  findById(id: any): Promise<T | undefined>;
-  findby(element: any): Promise<T | undefined>;
+  find(query?: any): Promise<T[]>;
+  findById(id: string, query?: object): Promise<T | undefined>;
+  findOne(query: any): Promise<T | undefined>;
   delete(id: string): Promise<void>;
-  update(dataToUpdate: Partial<T>): Promise<T>;
+  update(id: string, dataToUpdate: Partial<T>): Promise<T>;
 }

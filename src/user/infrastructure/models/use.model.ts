@@ -1,7 +1,8 @@
-import { Column, Entity, JoinTable, ManyToMany, PrimaryColumn } from 'typeorm';
+import { UserProps } from '@user/domain';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity()
-export class UserModel {
+@Entity('user')
+export class UserModel implements UserProps {
   @PrimaryColumn()
   user_id: string;
 
@@ -14,23 +15,21 @@ export class UserModel {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastLogin: Date;
 
   @Column()
   isActive: boolean;
 
   @Column()
+  isVerified: boolean;
+
+  @Column()
   createdAt: Date;
 
   @Column()
   updatedAt: Date;
-
-  @Column()
-  profileImg: string;
-
-
 }

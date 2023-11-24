@@ -13,4 +13,3 @@ export class UserRegistered extends BaseError {
     this.error = email ? `${this.message} with email: ${email}` : this.error;
   }
 }
-

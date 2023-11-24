@@ -1,2 +1,2 @@
 export * from './userTypeOrm.repository';
-export * from  './repository.config';
+export * from './repository.provider';
