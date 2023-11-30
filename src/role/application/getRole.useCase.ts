@@ -14,8 +14,8 @@ export class GetRole {
         try {
             const found = await this.roleRepository.find();
 
-            const roles = found.map(({role_id, role_name}) => {
-                return {role_id, role_name}
+            const roles = found.map(({roleId, roleName}) => {
+                return {roleId, roleName}
             })
 
             return roles;

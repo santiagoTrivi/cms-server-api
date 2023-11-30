@@ -1,5 +1,5 @@
 export interface BaseRespository<T> {
-  create(entity: T): Promise<T>;
+  create(entity: T): Promise<void>;
   find(query?: any): Promise<T[]>;
   findById(id: string, query?: object): Promise<T | undefined>;
   findOne(query: any): Promise<T | undefined>;

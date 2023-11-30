@@ -8,7 +8,7 @@ export class UserRegistered extends BaseError {
   public name = UserRegistered.name;
   public message = 'User already registered';
 
-  constructor(email: User['email']) {
+  constructor(email: string) {
     super();
     this.error = email ? `${this.message} with email: ${email}` : this.error;
   }

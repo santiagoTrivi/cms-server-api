@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User, UserRepository } from '@user/domain';
 import { Repository } from 'typeorm';
 import { UserModel } from '../models';
-import { UserMapperTypeOrm } from '../adapter/user.mapper';
+import { toDomain, toPersistMapper } from '../adapter/user.mapper';
 
 @Injectable()
 export class UserTypeOrmReposioty implements UserRepository {
@@ -13,7 +13,8 @@ export class UserTypeOrmReposioty implements UserRepository {
   ) {}
 
   create = async (entity: User) => {
-    return await this.typeOrmRepo.save(entity);
+    const user = toPersistMapper(entity);
+    await this.typeOrmRepo.save(user);
   };
 
   findById = async (id: any): Promise<User> => {
@@ -22,7 +23,7 @@ export class UserTypeOrmReposioty implements UserRepository {
     if (!user) {
       return undefined;
     }
-    return UserMapperTypeOrm.toDomain(user);
+    return toDomain(user);
   };
 
   find = async (query?: object): Promise<User[]> => {
@@ -33,7 +34,7 @@ export class UserTypeOrmReposioty implements UserRepository {
     const found = await this.typeOrmRepo.findOne({ where: query });
 
     if (!found) return undefined;
-    return UserMapperTypeOrm.toDomain(found);
+    return toDomain(found);
   };
 
   delete = (id: string): Promise<void> => {

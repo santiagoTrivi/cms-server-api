@@ -5,10 +5,10 @@ import { Column, Entity, PrimaryColumn } from 'typeorm';
 @Entity('role')
 export class RoleModel implements RoleProps {
   @PrimaryColumn()
-  role_id: string;
+  roleId: string;
 
   @Column({ type: 'enum', enum: ['OWNER', 'ADMIN', 'EDITOR', 'CONTRIBUTOR'] })
-  role_name: RoleTypes;
+  roleName: RoleTypes;
 
   @Column()
   createdAt: Date;

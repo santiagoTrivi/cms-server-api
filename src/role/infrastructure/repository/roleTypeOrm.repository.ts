@@ -11,7 +11,7 @@ export class RoleTypeOrmRepositoty implements RoleRepositoty {
     constructor(@InjectRepository(RoleModel)
     private typeOrmRepo: Repository<RoleModel>){}
     
-    create(entity: Role): Promise<Role> {
+    create(entity: Role): Promise<void> {
         throw new Error("Method not implemented.");
     }
     find = async(query?: any): Promise<Role[]> => {

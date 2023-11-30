@@ -2,9 +2,9 @@ import { UserProps } from '@user/domain';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('user')
-export class UserModel implements UserProps {
+export class UserModel {
   @PrimaryColumn()
-  user_id: string;
+  userId: string;
 
   @Column({ length: 100 })
   email: string;
